@@ -34,7 +34,9 @@ m.DefaultTryAttempts(2)
 these two functions return the current value,
 so if you want to check the default values without changing them, try:
 */
-fmt.Printf("Default scheme is: %s, Default attempts count: %d", m.DefaultScheme(""),m.DefaultTryAttempts(0))
+fmt.Printf("Default scheme is: %s, Default attempts count: %d", 
+    m.DefaultScheme(""),
+    m.DefaultTryAttempts(0))
 ```
 ### Loading proxies from file
 ```go
@@ -75,7 +77,7 @@ this example loads proxies using given request
 useful when, for example, website requires certain headers 
 */
 req, _ := http.NewRequest("GET", "https://leaked.wiki/r/JFNAXhn1oS", nil)
-req.Header.Add("User-agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0")
+req.Header.Add("Accept", "text/plain")
 n, err := m.LoadFromWeb(proxiesmanager.TargetSite{
     Request: req,
 }, nil, false)
