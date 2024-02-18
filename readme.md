@@ -135,7 +135,7 @@ io.Copy(os.Stdout, res.Body)
 ```
 ### Other functions
 #### Some of them have already been used in examples. 
-#### These are useful if you want to implement proxy servers yourself.
+#### These are useful if you want to implement proxy yourself.
 ```go
 // checks the number of proxies already loaded
 fmt.Printf("Already loaded %d proxies", m.Count())
@@ -147,7 +147,7 @@ fmt.Printf("Successfully called request using %s proxy", m.Proxy())
 // so for example, first line of loaded file
 ```
 ```go
-// to make manager selects next proxy as the current one, use
+// makes manager selects next proxy as the current one, use
 m.Next()
 ```
 ```go
