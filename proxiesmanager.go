@@ -41,7 +41,7 @@ func (m *ProxiesManager) DefaultScheme(scheme string) string {
 
 // Sets count of attempts for all loaded proxies for one request, must be > 0.
 func (m *ProxiesManager) DefaultTryAttempts(count int) int {
-	if count < 1 {
+	if count > 0 {
 		m.defaultProxyTryAttempts = count
 	}
 	return m.defaultProxyTryAttempts
