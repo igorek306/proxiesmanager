@@ -19,8 +19,8 @@ type ProxiesManager struct {
 }
 
 type TargetSite struct {
-	url     string
-	request *http.Request
+	Url     string
+	Request *http.Request
 }
 
 // Returns pointer to ProxiesManager struct.
@@ -67,12 +67,12 @@ func (m *ProxiesManager) LoadFromWeb(ts TargetSite, httpClient *http.Client, use
 		httpClient = &http.Client{}
 	}
 
-	if ts.request == nil {
-		if ts.url == "" {
+	if ts.Request == nil {
+		if ts.Url == "" {
 			return 0, errors.New("neither url or request was provided")
 		}
 		var err error
-		ts.request, err = http.NewRequest("GET", ts.url, nil)
+		ts.Request, err = http.NewRequest("GET", ts.Url, nil)
 		if err != nil {
 			return 0, nil
 		}
@@ -80,12 +80,12 @@ func (m *ProxiesManager) LoadFromWeb(ts TargetSite, httpClient *http.Client, use
 	var res *http.Response
 	var err error
 	if !useProxies {
-		res, err = httpClient.Do(ts.request)
+		res, err = httpClient.Do(ts.Request)
 		if err != nil {
 			return 0, err
 		}
 	} else {
-		res, err = m.proxiedRequest(httpClient, ts.request)
+		res, err = m.proxiedRequest(httpClient, ts.Request)
 		if err != nil {
 			return 0, err
 		}

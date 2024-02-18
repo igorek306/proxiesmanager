@@ -19,17 +19,32 @@ m := proxiesmanager.NewProxiesManager()
 #### Configuration
 ```go
 /*
-when the manager didn't find any "://" in the line when loading the proxy, it assumes there is no schema and adds a default scheme
-example:
+when the manager didn't find any "://" in the line when loading the proxy,
+it assumes there is no schema and adds a default scheme, example:
 127.0.0.1:5555 -> http://127.0.0.1:5555
 */
 m.DefaultScheme("http") 
 /*
-when using pm.CallRequest or pm.LoadFromWeb with proxies,manager tries call request using each loaded proxy and the tries value determines how many times it will test the same proxy before returning an error
+when using pm.CallRequest or pm.LoadFromWeb with proxies,
+manager tries call request using each loaded proxy and the tries value
+determines how many times it will test the same proxy before returning an error
 */
 m.DefaultTryAttempts(2)
 /*
-these two functions return the current value, so if you want to check the default values without changing them, try:
+these two functions return the current value,
+so if you want to check the default values without changing them, try:
 */
 fmt.Printf("Default scheme is: %s, Default attempts count: %d", m.DefaultScheme(""),m.DefaultTryAttempts(0))
+```
+#### Loading proxies from file
+```go
+n, err := m.LoadFromFile("proxies.txt")
+if err != nil {
+    fmt.Printf("error loading proxies, %s\n", err.Error())
+    return
+}
+fmt.Printf("loaded %d proxies from file\n", n)
+```
+#### Loading proxies from web
+```go
 ```
